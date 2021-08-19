@@ -27,14 +27,18 @@ const ContactForm : FunctionComponent = () =>{
     firstName: '',
     lastName: '',
     email: '',
-    phone: 0,
-    capitalInvested: 0
+    phone: '',
+    capitalInvested: '',
+    address: '',
+    state: '',
+    zipcode: '',
   })
   const classes = useStyles();
   const [ppl, setPpl] = useRecoilState(atoms.people)
+  setPpl(contacts)
   const onChange = (e: any) =>{
     let value = e.target.value
-    if(e.target.name === 'phone' || e.target.name === 'capitalInvested'){
+    if(e.target.name === 'phone' || e.target.name === 'capitalInvested' ||e.target.name === 'zipcode'  ){
       value = parseInt(e.target.value)
     }
     
@@ -68,25 +72,36 @@ const ContactForm : FunctionComponent = () =>{
     <TextField id="standard-basic" name='lastName' defaultValue={''} label='Last Name' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='phone' defaultValue={0} label='Phone Number' onChange={onChange}  />
+    <TextField id="standard-basic" name='phone' defaultValue={''} label='Phone Number' onChange={onChange}  />
     </div>
     <div>
     <TextField id="standard-basic" name='email' defaultValue={''} label='Email' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='capitalInvested'defaultValue={0} label='Capital Invested' onChange={onChange}  />
+    <TextField id="standard-basic" name='capitalInvested'defaultValue={''} label='Capital Invested' onChange={onChange}  />
+    </div>
+    <div>
+    <TextField id="standard-basic" name='address'defaultValue={''} label='address' onChange={onChange}  />
+    </div>
+    <div>
+    <TextField id="standard-basic" name='state'defaultValue={''} label='state' onChange={onChange}  />
+    </div>
+    <div>
+    <TextField id="standard-basic" name='zipcode'defaultValue={''} label='zipcode' onChange={onChange}  />
     </div>
   </form>
-  <div id='spaceDiv'></div>
+  
   <div id='buttons'>
-  <div>
-  <Button variant="contained" color="primary"onClick={saveChanges}> Save</Button>
-  </div>
+  
   
   <div>
   <Link to = "/contactView">
   <Button variant="contained" color="primary"> Cancel</Button>
   </Link>
+  </div>
+  <div id='spaceDiv'></div>
+  <div>
+  <Button variant="contained" color="primary"onClick={saveChanges}> Save</Button>
   </div>
   </div>
   </div>

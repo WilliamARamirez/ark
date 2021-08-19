@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {Button} from '@material-ui/core/';
+import {Link} from 'react-router-dom'
 import { useRecoilState} from 'recoil';
 import contacts from './contacts';
 
@@ -27,8 +29,12 @@ const [contactList, setContactList] = useRecoilState(atoms.people)
  
   return (
     <>
+    <div id='aboveTable'>
     <h1>Contacts</h1>
-    
+    <Link to = "/address">
+    <Button variant="contained" color="primary"> Addresses</Button>
+  </Link>
+  </div>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>

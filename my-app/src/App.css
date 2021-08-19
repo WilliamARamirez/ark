@@ -38,16 +38,22 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 margin-top: 2em;
-
 }
-
+Button{
+  width: 100px;
+  margin: 25px;
+}
 #spaceDiv{
-  width: 1em;
-}
-.App-link {
-  color: #61dafb;
+ width:2em;
 }
 
+Table{
+  margin: 25px;
+}
+
+#aboveTable{
+  margin-left: 30px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

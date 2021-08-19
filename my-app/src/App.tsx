@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import ContactForm from './ContactForm';
 import ContactView from './ContactView';
+import Address from './Address';
 
 const App : FunctionComponent = ({}) =>{
   return(
@@ -14,7 +15,8 @@ const App : FunctionComponent = ({}) =>{
         <Switch>
           <Route exact path="/" component={ContactForm} />
           <Route exact path="/contactView" component={ContactView} />
-          
+          <Route exact path="/address" component={Address} />
+        
         </Switch>
       </RecoilRoot>
     </Router>

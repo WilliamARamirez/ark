@@ -1,11 +1,15 @@
- const contacts: { id: number, firstName: string, lastName : string, phone : number, email : string, capitalInvested : number}[] = [
+ const contacts: { id: number, firstName: string, lastName : string, phone : number, email : string, capitalInvested : number, address :string, state : string, zipcode: number}[] = [
     {
       id: 1,
       firstName: 'Will', 
       lastName: 'Ramirez', 
       phone: 6194559459, 
       email: 'willramirez630@gmail.com',
-      capitalInvested: 100
+      capitalInvested: 100,
+      address:'571 Dye Street',
+      state: 'AZ',
+      zipcode: 85012,
+
      },
      {
       id: 2,
@@ -13,15 +17,21 @@
       lastName: 'Jordan', 
       phone: 61223232323, 
       email: 'mj@gmail.com',
-      capitalInvested: 100 
+      capitalInvested: 100,
+      address: '572 Dye Street',
+      state: 'AZ',
+      zipcode: 85012,
     },
     {
-     id: 3,
-     firstName: 'Dan', 
-     lastName: 'Ambramov', 
-     phone: 6193231323, 
-     email: 'danny@gfacebook.com',
-     capitalInvested: 100 
+      id: 3,
+      firstName: 'Dan', 
+      lastName: 'Ambramov', 
+      phone: 6193231323, 
+      email: 'danny@gfacebook.com',
+      capitalInvested: 100,
+      address: '573 Dye Street',
+      state: 'AZ',
+      zipcode: 85012,
    },
    {
    id: 4,
@@ -29,7 +39,10 @@
    lastName: 'Buterin', 
    phone: 7181124444, 
    email: 'vb@etheruem.org',
-   capitalInvested: 100 
+   capitalInvested: 100,
+   address: '574 Dye Street',
+   state: 'AZ',
+   zipcode: 85012,
   },
   {
   id: 5,
@@ -37,7 +50,10 @@
   lastName: 'Goggins', 
   phone: 8183231234, 
   email: 'DG@gmail.com',
-  capitalInvested: 100 
+  capitalInvested: 100,
+  address: '575 Dye Street',
+  state: 'AZ',
+  zipcode: 85012, 
   },
   {
   id: 6,
@@ -45,7 +61,10 @@
   lastName: 'Pan', 
   phone: 2124559114, 
   email: 'ppan@gmail.com',
-  capitalInvested: 100 
+  capitalInvested: 100,
+  address: '576 Dye Street',
+  state: 'AZ',
+  zipcode: 85012, 
   },
   {
   id: 7,
@@ -53,7 +72,10 @@
   lastName: 'Jackson', 
   phone: 6177313223, 
   email: 'lakers@gmail.com',
-  capitalInvested: 100 
+  capitalInvested: 100,
+  address: '577 Dye Street',
+  state: 'AZ',
+  zipcode: 85012, 
   },
   {
   id: 8,
@@ -61,7 +83,10 @@
   lastName: 'Watts', 
   phone: 5182471123, 
   email: 'DaWatts@gmail.com',
-  capitalInvested: 100 
+  capitalInvested: 100,
+  address: '578 Dye Street',
+  state: 'AZ',
+  zipcode: 85012, 
   },
   {
   id: 9,
@@ -69,7 +94,10 @@
   lastName: 'Thiel', 
   phone: 7238115331, 
   email: 'petert@gmail.com',
-  capitalInvested: 100 
+  capitalInvested: 100,
+  address: '579 Dye Street',
+  state: 'AZ',
+  zipcode: 85012, 
   },
   {
   id: 10,
@@ -77,7 +105,10 @@
   lastName: 'Tusk', 
   phone: 2121315331, 
   email: 'et@gmail.com',
-  capitalInvested: 100 
+  capitalInvested: 100,
+  address: '560 Dye Street',
+   state: 'AZ',
+   zipcode: 85012, 
   }
     ]
   export default contacts
