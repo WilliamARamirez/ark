@@ -10,14 +10,6 @@ import contacts from './contacts';
 
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
-    },
-  },
-}));
 
 
 
@@ -75,6 +67,11 @@ const freshId = ppl.length;
   const stateObj = props.location.state;
   const newState = vCheck(stateObj)
   const [newContact, setNewContact] = useState(newState)
+  const useStyles = makeStyles({
+    table: {
+      minWidth: 650,
+    },
+  });
   const classes = useStyles();
   
   
@@ -110,7 +107,7 @@ const freshId = ppl.length;
 <div id='formWapper'>
 <div id ='form'>
 <h1>Add Contact</h1>
-  <form  className={classes.root} noValidate >
+  <form  className={classes.table} noValidate >
     <div>
     <TextField id="standard-basic" name='firstName' defaultValue={newContact.firstName} label='First Name' onChange={onChange}  />
     </div>
