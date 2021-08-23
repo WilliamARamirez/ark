@@ -1,4 +1,4 @@
-import {FunctionComponent, useEffect, useState} from 'react';
+import {FunctionComponent} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,9 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Button} from '@material-ui/core/';
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import { useRecoilValue} from 'recoil';
-import contacts from './contacts';
+
 
 import atoms from './atoms';
 
@@ -68,7 +68,7 @@ const addresses = useRecoilValue(atoms.people)
   
 
 
-export default Address;
+export default withRouter(Address);
 
 
 

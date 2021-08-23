@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useRef } from 'react';
 import {TextField, Button} from '@material-ui/core/';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 import {
   useRecoilState,
 } from 'recoil';
@@ -20,22 +20,65 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ContactForm : FunctionComponent = () =>{
-  const history = useHistory()
-  const [newContact, setNewContact] = useState({
-    id: 11,
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    capitalInvested: '',
-    address: '',
-    state: '',
-    zipcode: '',
-  })
+
+const ContactForm : FunctionComponent = (props : any) =>{
+const history = useHistory()
+const [ppl, setPpl] = useRecoilState(atoms.people)
+setPpl(contacts)
+const refPpl = useRef(ppl)
+const freshId = ppl.length;
+ function vCheck(stateV){
+  if(stateV=== null || undefined){
+    return {
+      id: freshId,
+      firstName: '',
+      lastName:'',
+      email: '',
+      phone: '',
+      capitalInvested: '',
+      address: '',
+      state: '',
+      zipcode: ''
+   }
+  }
+  if(typeof stateV !== undefined ){
+
+    
+    const removeDup =(ppl, idToRemove)=>{
+      const newArr =  []
+      for (let i = 0; ppl.length; i++){
+        if(ppl[i]?.id !== idToRemove ){
+          newArr.push(ppl[i])
+        }
+      }return newArr
+    }
+    
+    const newPpl = removeDup(refPpl, stateV?.id);
+    console.log(refPpl)
+    // setPpl(newPpl)
+    
+    return {
+      id: stateV?.id,
+      firstName: stateV?.firstName,
+      lastName: stateV?.lastName,
+      email: stateV?.email,
+      phone: stateV?.phone,
+      capitalInvested: stateV?.capitalInvested,
+      address: stateV?.address,
+      state: stateV?.state,
+      zipcode: stateV?.zipcode,
+    }
+  }
+   }
+   
+ 
+  const stateObj = props.location.state;
+  const newState = vCheck(stateObj)
+  const [newContact, setNewContact] = useState(newState)
   const classes = useStyles();
-  const [ppl, setPpl] = useRecoilState(atoms.people)
-  setPpl(contacts)
+  
+  
+  
   const onChange = (e: any) =>{
     let value = e.target.value
     if(e.target.name === 'phone' || e.target.name === 'capitalInvested' ||e.target.name === 'zipcode'  ){
@@ -50,44 +93,47 @@ const ContactForm : FunctionComponent = () =>{
     
 
   }
-  
+ 
   const saveChanges = (e) => {
+
+
     const arr = [...ppl, newContact]
     // arr.push(newContact)
-    console.log(arr)
+    
     setPpl(arr)
     e.preventDefault();
     history.push( '/contactView');
   }
   return(
+    
 <>
 <div id='formWapper'>
 <div id ='form'>
 <h1>Add Contact</h1>
   <form  className={classes.root} noValidate >
     <div>
-    <TextField id="standard-basic" name='firstName' defaultValue={''} label='First Name' onChange={onChange}  />
+    <TextField id="standard-basic" name='firstName' defaultValue={newContact.firstName} label='First Name' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='lastName' defaultValue={''} label='Last Name' onChange={onChange}  />
+    <TextField id="standard-basic" name='lastName' defaultValue={newContact.lastName} label='Last Name' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='phone' defaultValue={''} label='Phone Number' onChange={onChange}  />
+    <TextField id="standard-basic" name='phone' defaultValue={newContact.phone} label='Phone Number' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='email' defaultValue={''} label='Email' onChange={onChange}  />
+    <TextField id="standard-basic" name='email' defaultValue={newContact.email} label='Email' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='capitalInvested'defaultValue={''} label='Capital Invested' onChange={onChange}  />
+    <TextField id="standard-basic" name='capitalInvested'defaultValue={newContact.capitalInvested} label='Capital Invested' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='address'defaultValue={''} label='address' onChange={onChange}  />
+    <TextField id="standard-basic" name='address'defaultValue={newContact.address} label='address' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='state'defaultValue={''} label='state' onChange={onChange}  />
+    <TextField id="standard-basic" name='state'defaultValue={newContact.state} label='state' onChange={onChange}  />
     </div>
     <div>
-    <TextField id="standard-basic" name='zipcode'defaultValue={''} label='zipcode' onChange={onChange}  />
+    <TextField id="standard-basic" name='zipcode'defaultValue={newContact.zipcode} label='zipcode' onChange={onChange}  />
     </div>
   </form>
   
@@ -110,4 +156,4 @@ const ContactForm : FunctionComponent = () =>{
   )
   }
 
-  export default ContactForm;
+  export default withRouter(ContactForm);

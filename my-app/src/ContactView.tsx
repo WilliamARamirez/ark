@@ -1,4 +1,4 @@
-import {FunctionComponent, useEffect, useState} from 'react';
+import {FunctionComponent} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,11 +8,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Button} from '@material-ui/core/';
-import {Link} from 'react-router-dom'
 import { useRecoilState} from 'recoil';
-import contacts from './contacts';
-
 import atoms from './atoms';
+import {Link, useHistory, withRouter} from 'react-router-dom'
+import Styled from 'styled-components'
+
+
+const StyledLink = Styled(Link)`
+
+  color: pink;
+`
 
 const useStyles = makeStyles({
   table: {
@@ -22,11 +27,16 @@ const useStyles = makeStyles({
 
 const ContactView : FunctionComponent = () =>{
 const [contactList, setContactList] = useRecoilState(atoms.people)
-  
+const history = useHistory();
 
   
   const classes = useStyles();
- 
+  function updateContact(row : any){
+    
+    history.push( '/contactForm',row, )}
+
+
+
   return (
     <>
     <div id='aboveTable'>
@@ -49,15 +59,31 @@ const [contactList, setContactList] = useRecoilState(atoms.people)
         <TableBody>
           {
           contactList.map((row: any) => (
-          <TableRow key={row.id}>
-          <TableCell component="th" scope="row">
-          {row.firstName}
-          </TableCell>
+          
+            
+          <TableRow key={row.id} onClick={(e) => {
+            e.preventDefault();
+            updateContact(row)
+            
+            } 
+            }>
+          
+          {/* <TableCell component="th" scope="row"> */}
+          <TableCell component="th" scope="row">{row.firstName}</TableCell>
+          
+          
           <TableCell align="right">{row.lastName}</TableCell>
+          
+          
           <TableCell align="right">{row.phone}</TableCell>
+          
           <TableCell align="right">{row.email}</TableCell>
+          
            <TableCell align="right">{row.capitalInvested}</TableCell>
+           
           </TableRow>
+          
+          
           ))}
         </TableBody>
       </Table>
@@ -68,7 +94,7 @@ const [contactList, setContactList] = useRecoilState(atoms.people)
   
 
 
-export default ContactView;
+export default withRouter(ContactView);
 
 
 

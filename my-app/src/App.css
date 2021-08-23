@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+#toCenter{
+  margin: auto;
+  margin-top: 20%;
+  text-align: center;
+}
+#outer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
